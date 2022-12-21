@@ -10,6 +10,7 @@ import (
 )
 
 func handleTunneling(w http.ResponseWriter, r *http.Request) {
+	log.Print("new tcp connection", r.Method)
 	destConn, err := net.DialTimeout("tcp", r.Host, 10*time.Second)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusServiceUnavailable)
